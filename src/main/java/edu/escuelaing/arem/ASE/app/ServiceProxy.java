@@ -7,9 +7,9 @@ import static  spark.Spark.get;
 
 public class ServiceProxy {
 
-    private static final String[] serversPrimes={"http://localhost:4567/primes?value=", "http://localhost:4567/primes?value="};
+    private static final String[] serversPrimes={"http://ec2-44-211-75-161.compute-1.amazonaws.com:4567/primes?value=", "http://ec2-18-234-125-230.compute-1.amazonaws.com:4567/primes?value="};
 
-    private static final String[] serversFactors={"http://localhost:4567/factors?value=", "http://localhost:4567/factors?value="};
+    private static final String[] serversFactors={"http://ec2-44-211-75-161.compute-1.amazonaws.com:4567/factors?value=", "http://ec2-18-234-125-230.compute-1.amazonaws.com:4567/factors?value="};
 
    private static int urlInstancePrimes=0;
 
