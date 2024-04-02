@@ -37,7 +37,6 @@ public class MathService {
         for (int i=0; i<listNumbers.size(); i++){
             stringBuilder.append(listNumbers.get(i));
             response+=String.valueOf(listNumbers.get(i));
-            System.out.println("lista "+listNumbers.get(i));
             if(i<listNumbers.size()-1){
                 stringBuilder.append(", ");
                 response+=",";
@@ -53,6 +52,7 @@ public class MathService {
                 factorsn.add(i);
             }
         }
+        factorsn.add(value);
         return factorsn;
     }
     public static List<Integer> primes(Integer value){
