@@ -14,6 +14,8 @@ Para probar el funcionamiento en local se debe cambiar las direcciones de los se
 
 ![ aws](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/local.png)
 
+## Arquitectura
+Se tiene tres clases, MathService es la encargada de calcular la lista de primos o factores para el numero ingresado por el formulario. En ProxyService se hace la llamada a HttpConection para obtener la respuesta
 ## Despliegue en Aws
 
 https://youtu.be/Q49oYjOvpyw
