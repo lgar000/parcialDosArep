@@ -53,7 +53,11 @@ Para probar el funcionamiento en local se debe cambiar las direcciones de los se
 
 ## Arquitectura
 
-Se tiene tres clases, MathService es la encargada de calcular la lista de primos o factores para el numero ingresado por el formulario. En ProxyService se hace la llamada a HttpConection para obtener la respuesta
+Se tienen tres clases. En la clase MathService se encuentra la lógica implementada para calcular la lista de números primos o factores para el número ingresado en el formulario. Para calcular los números primos, tenemos el método primes, que recibe el valor que vamos a tomar como rango y para cada uno de estos números verificamos que solamente tengan dos divisores: el uno y el mismo. En cuanto al cálculo de los factores, tenemos el método factors que recibe el número. Aquí validamos que el módulo sea cero para considerarlo un factor. Esta verificación se hace desde el uno hasta la mitad del valor ingresado. Adicionalmente, en esta clase tenemos dos endpoints de tipo GET, uno para "primes" y otro para "factors". Ambos retornan las respuestas en formato JSON.
+
+En ProxyService, se hace la llamada a HttpConnection para obtener la respuesta. Esto se logra mediante el enrutamiento a los servidores correspondientes. Las rutas se encuentran definidas en un arreglo. Con la finalidad de tener balanceo de cargas entre las dos instancias definidas para MathService, se implementó un método round-robin que distribuye las solicitudes entre las dos instancias.
+
+Esta arquitectura nos permite tener alta disponibilidad y escalabilidad, dado que estamos desplegando en la nube los servicios de cálculo de primos y factores. Además, ServiceProxy implementa un mecanismo de balanceo de carga utilizando el algoritmo de round-robin.
 
 ## Despliegue en Aws
 
