@@ -1,8 +1,6 @@
-# Parcial Dos
+# Parcial Segundo Tercio
 
 En este parcial se va a diseñar, construir y despliegar un aplicación web para investigar los factores de números enteros y los números primos. El programa debe estar desplegado en tres máquinas virtuales de EC2 de AWS como se describe abajo. Las tecnologías usadas en la solución deben ser maven, git, github, sparkjava, html5, y js. No use liberías adicionales.
-
-a factorización de números enteros es un problema complejo para el cual no se conocen algoritmos clásicos eficientes. La criptografía clásica está soportada en la dificultad para encontrar los factores primos de números grandes.
 
 ### Problema
 Diseñe un prototipo de sistema de microservicios que tenga un servicio (En la figura se representa con el nombre Math Services) para computar las funciones numéricas. El servicio de las funciones numéricas debe estar desplegado en al menos dos instancias virtuales de EC2. Además, debe implementar un proxy de servicio que reciba las solicitudes de llamado desde los clientes y se las delega a las dos instancias del servicio numérico usando un algoritmo de round-robin. El proxy deberá estar desplegado en otra máquina EC2. Asegúrese de que se pueden configurar las direcciones y puertos de las instancias del servicio en el proxy usando variables de entorno del sistema operativo. Finalmente, construye un cliente Web mínimo con un formulario que reciba el valor y de manera asíncrona invocar el servicio en el PROXY. Puede hacer un formulario para cada una de las funciones. El cliente debe estar escrito en HTML y JS.
@@ -45,7 +43,7 @@ java -cp "target/classes;target/dependency/*" edu.escuelaing.arem.ASE.app.MathSe
 java -cp "target/classes;target/dependency/*" edu.escuelaing.arem.ASE.app.ServiceProxy
 ```
 
-## funcionamiento en local
+## Funcionamiento en local
 
 Para probar el funcionamiento en local se debe cambiar las direcciones de los serves que se encuentran en la clase ServiceProxy por localhost y debe dirigirse al navegador e ingresar la url http://localhost:4568/index, aquí econtrata dos formularios, uno para obtener los números primos en el rango del valor ingresado y el otro para obtener los factores del número ingresado:
 
@@ -58,6 +56,8 @@ Se tienen tres clases. En la clase MathService se encuentra la lógica implement
 En ProxyService, se hace la llamada a HttpConnection para obtener la respuesta. Esto se logra mediante el enrutamiento a los servidores correspondientes. Las rutas se encuentran definidas en un arreglo. Con la finalidad de tener balanceo de cargas entre las dos instancias definidas para MathService, se implementó un método round-robin que distribuye las solicitudes entre las dos instancias.
 
 Esta arquitectura nos permite tener alta disponibilidad y escalabilidad, dado que estamos desplegando en la nube los servicios de cálculo de primos y factores. Además, ServiceProxy implementa un mecanismo de balanceo de carga utilizando el algoritmo de round-robin.
+
+![instancias](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/arquitecturaParcial.png)
 
 ## Despliegue en Aws
 
@@ -86,3 +86,17 @@ Instancia 2 en funcionamiento para MathService:
 Para verificar el despliegue en aws, consulte el siguiente video:
 
 https://youtu.be/Q49oYjOvpyw
+
+## Construido Con
+
+* [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) - Lenguaje de programación y desarrollo
+* [Html](https://developer.mozilla.org/es/docs/Web/HTML) - Lenguaje de marcado para la elaboración de páginas web
+* [JavaScript](https://developer.mozilla.org/es/docs/Web/CSS) -JavaScript es un lenguaje de programación interpretado
+* [Maven](https://maven.apache.org/) - Gestión de dependencias
+* [Intellij](https://www.jetbrains.com/es-es/idea/) - Entorno de desarrollo integrado para el desarrollo de programas informáticos
+* [Git](https://rometools.github.io/rome/) - Sistema de control de versiones distribuido
+* [AWS](https://aws.amazon.com/es/free/?gclid=CjwKCAjw7-SvBhB6EiwAwYdCAdFmvp0VJz5wsQZcg5anEFJtzJJ2dfpVsGlht9X5DSyRY3Cz7u0B-RoC6ewQAvD_BwE&trk=8fa18207-f2c2-4587-81a1-f2a3648571b3&sc_channel=ps&ef_id=CjwKCAjw7-SvBhB6EiwAwYdCAdFmvp0VJz5wsQZcg5anEFJtzJJ2dfpVsGlht9X5DSyRY3Cz7u0B-RoC6ewQAvD_BwE:G:s&s_kwcid=AL!4422!3!647999789202!e!!g!!amazon%20web%20services!19685287144!146461596856) - Es una colección de servicios de computación en la nube pública que en conjunto forman una plataforma de computación en la nube, ofrecidas a través de Internet por Amazon.com
+
+## Autor
+
+* **Laura García** - [lgar000](https://github.com/lgar000)
