@@ -57,4 +57,28 @@ Se tiene tres clases, MathService es la encargada de calcular la lista de primos
 
 ## Despliegue en Aws
 
+Para desplegar la aplicación en aws, se crearon tres instancias de ec2:
+
+![instancias](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/instanciasAws.png)
+
+Una vez que se establezca la conexión en las tres instancias se va instalar en cada una de estas maven, java y git. En una de estas instancias se va a ejecutar la clase ServiceProxy y en las dos restantes se va a ejecutar la clase MathService. Se debe ubicar en la carpeta principal y ejecutar el comando mvn clean install y ejecutar las respectivas clases en las instancias. Una vez hecho esto, se puede dirigir al navegador con la ipv4 pública correspondiente a la instancia máquina3 e ingresar a la url que contiene el formulario, teniendo en cuenta que el pueto es el 4568:
+
+![form](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/Screenshot%20(3).png)
+
+Puede comprobar que hay dos instancias de ec2 en los que se ejecuta la clase MathService y cada una de estas tiene la funcionalidad de calcular los primos y los factores de un número:
+
+Instancia 1 en funcionamiento para MathService:
+
+![primesIuno](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/instanceMathServicePrimes.png)
+
+![factorsIuno](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/instanceMathServiceFactors.png)
+
+Instancia 2 en funcionamiento para MathService:
+
+![primesIdos](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/instanceTwoMathServicePrimes.png)
+
+![factorsIdos](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/instanceTwoMathServiceFactors.png)
+
+Para verificar el despliegue en aws, consulte el siguiente video:
+
 https://youtu.be/Q49oYjOvpyw
