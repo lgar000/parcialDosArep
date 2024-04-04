@@ -7,15 +7,13 @@ import static  spark.Spark.get;
 
 public class ServiceProxy {
 
-    private static final String[] serversPrimes={"http://ec2-54-159-207-155.compute-1.amazonaws.com:4567/primes?value=", "http://ec2-44-210-137-131.compute-1.amazonaws.com:4567/primes?value="};
-
-    private static final String[] serversFactors={"http://ec2-54-159-207-155.compute-1.amazonaws.com:4567/factors?value=", "http://ec2-44-210-137-131.compute-1.amazonaws.com:4567/factors?value="};
-
-   private static int urlInstancePrimes=0;
-
-    private static int urlInstanceFactors=0;
-
-
+    private static final String[] SERVICE_URLS = {
+            System.getenv("PRIMES_SERVICE_URL_1"),
+            System.getenv("PRIMES_SERVICE_URL_2"),
+            System.getenv("FACTORS_SERVICE_URL_1"),
+            System.getenv("FACTORS_SERVICE_URL_2")
+    };
+    private static int urlInstance=0;
 
     public static void main(String... args){
         port(getPort());
@@ -23,30 +21,28 @@ public class ServiceProxy {
         get("index", (req, res)-> getIndex());
         get("primes", (req, res) ->{
             res.type("application/json");
-            return getResponsePrimes(req.queryParams("value"));
+            return getResponsePrimes(req.queryParams("value"), "/primes");
         });
         get("factors", (req, res) ->{
             res.type("application/json");
-            return getResponseFactors(req.queryParams("value"));
+            return getResponseFactors(req.queryParams("value"), "/factors");
         });
     }
 
-    public static String getResponsePrimes(String value) throws IOException {
-        return  HttpConnectionExample.getResponse(roundRobinPrimes()+value);
+    public static String getResponsePrimes(String value, String petition) throws IOException {
+        String url = getNextUrl();
+        return  HttpConnectionExample.getResponse(url+petition+"?value=" +value);
     }
 
-    public static String getResponseFactors(String value) throws IOException {
-        return HttpConnectionExample.getResponse(roundRobinFactors()+value);
+    public static String getResponseFactors(String value, String petition) throws IOException {
+        String url = getNextUrl();
+        return HttpConnectionExample.getResponse(url+petition+"?value=" +value);
     }
 
-    public static String roundRobinPrimes(){
-        urlInstancePrimes=(urlInstancePrimes+1)%serversPrimes.length;
-        return serversPrimes[urlInstancePrimes];
-    }
-
-    public static String roundRobinFactors(){
-        urlInstanceFactors=(urlInstanceFactors+1)%serversFactors.length;
-        return serversFactors[urlInstanceFactors];
+    private static String getNextUrl() {
+        String url = SERVICE_URLS[urlInstance];
+        urlInstance = (urlInstance + 1) % SERVICE_URLS.length;
+        return url;
     }
 
 
