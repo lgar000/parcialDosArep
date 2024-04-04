@@ -33,7 +33,7 @@ Para compilar y empaquetar, ejecute
 mvn clean install
 ```
 
-Para ejecutar el proyecto abra su IDE y ejecute las clases HelloSpark1 y HelloSpark2 o ubiquese en la carpeta pricipal y ejecute los siguientes comandos, cada uno en una terminal diferente:
+Para ejecutar el proyecto abra su IDE y ejecute las clases MathService y ServiceProxy o ubiquese en la carpeta pricipal y ejecute los siguientes comandos, cada uno en una terminal diferente:
 
 ```
 java -cp "target/classes;target/dependency/*" edu.escuelaing.arem.ASE.app.MathService
