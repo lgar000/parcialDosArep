@@ -45,7 +45,10 @@ java -cp "target/classes;target/dependency/*" edu.escuelaing.arem.ASE.app.Servic
 
 ## Funcionamiento en local
 
-Para probar el funcionamiento en local se debe cambiar las direcciones de los serves que se encuentran en la clase ServiceProxy por localhost y debe dirigirse al navegador e ingresar la url http://localhost:4568/index, aquí econtrata dos formularios, uno para obtener los números primos en el rango del valor ingresado y el otro para obtener los factores del número ingresado:
+Para probar el funcionamiento debe configurar en su IDE las variables de entorno se encuentran en la clase ServiceProxy en este caso todas deben ser: http://localhost:4567. 
+En el caso de usar Intellij a Run en la parte superior y aquí seleccione: Edit configurations. Aquí podra establecer las variables de entorno.
+
+Una vez hecho esto, debe dirigirse al navegador e ingresar la url http://localhost:4568/index, aquí econtrata dos formularios, uno para obtener los números primos en el rango del valor ingresado y el otro para obtener los factores del número ingresado:
 
 ![local](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/local.png)
 
@@ -65,9 +68,25 @@ Para desplegar la aplicación en aws, se crearon tres instancias de ec2:
 
 ![instancias](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/instanciasAws.png)
 
-Una vez que se establezca la conexión en las tres instancias se va instalar en cada una de estas maven, java y git. En una de estas instancias se va a ejecutar la clase ServiceProxy y en las dos restantes se va a ejecutar la clase MathService. Se debe ubicar en la carpeta principal y ejecutar el comando mvn clean install y ejecutar las respectivas clases en las instancias. Una vez hecho esto, se puede dirigir al navegador con la ipv4 pública correspondiente a la instancia máquina3 e ingresar a la url que contiene el formulario, teniendo en cuenta que el pueto es el 4568:
+Una vez que se establezca la conexión en las tres instancias se va instalar en cada una de estas maven, java y git. En una de estas instancias se va a ejecutar la clase ServiceProxy y en las dos restantes se va a ejecutar la clase MathService. 
 
-![form](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/Screenshot%20(3).png)
+![instanciaServiceProxy](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/maquina3ServiceProxy.png)
+
+![instanciaUnoMathService](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/maquina2MathService.png)
+
+![instanciaDosMathService](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/maquina2MathService.png)
+
+Adicionalmente se deben configurar las variables de entorno, en la instancia ec2 de AWS donde vamos a ejecutar la clase ServiceProxy. Lo cual se puede hacer mediante el comando: export NOMBRE_DE_LA_VARIABLE=http://ipv4Correspondiente_a_las_instancias_que_en_la_que_se_ejecuta_MathService:puerto, esto se debe hacerse para cada variable que tenga:
+
+![instanciaDosMathService](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/configurarVariablesEnAws.png)
+
+Puede vertificar que las variables han sido configuradas mediante el comando env:
+
+![env](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/env.png)
+
+Se debe ubicar en la carpeta principal y ejecutar el comando mvn clean install y ejecutar las respectivas clases en las instancias. Una vez hecho esto, se puede dirigir al navegador con la ipv4 pública correspondiente a la instancia máquina3 e ingresar a la url que contiene el formulario, teniendo en cuenta que el pueto es el 4568:
+
+![form](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/formularioAws.png)
 
 Puede comprobar que hay dos instancias de ec2 en los que se ejecuta la clase MathService y cada una de estas tiene la funcionalidad de calcular los primos y los factores de un número:
 
@@ -83,9 +102,17 @@ Instancia 2 en funcionamiento para MathService:
 
 ![factorsIdos](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/instanceTwoMathServiceFactors.png)
 
-Para verificar el despliegue en aws, consulte el siguiente video:
+En la siguiente imagen puede comprobar que esta funcionando el round robin, ya que las instancias se estan turnando para cada solicitud:
+
+![factorsIdos](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/funcionamientoRoundRobin.png)
+
+Para verificar el despliegue en aws hecho en clase, consulte el siguiente video:
 
 https://youtu.be/Q49oYjOvpyw
+
+Video actulizado, donde ya se encuentran configuradas las variables de entorno
+
+https://youtu.be/bwGYEhbcpz0
 
 ## Construido Con
 
