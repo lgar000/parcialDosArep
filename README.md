@@ -45,8 +45,9 @@ java -cp "target/classes;target/dependency/*" edu.escuelaing.arem.ASE.app.Servic
 
 ## Funcionamiento en local
 
-Para probar el funcionamiento debe configurar en su IDE las variables de entorno se encuentran en la clase ServiceProxy en este caso todas deben ser: http://localhost:4567. 
-En el caso de usar Intellij a Run en la parte superior y aquí seleccione: Edit configurations. Aquí podra establecer las variables de entorno.
+Para probar el funcionamiento de manera local, debe configurar las variables de entorno en su IDE. Estas variables se encuentran en la clase ServiceProxy, y en este caso, todas deben establecerse como: http://localhost:4567.
+
+En el caso de utilizar IntelliJ, diríjase a 'Run' en la parte superior y seleccione 'Edit configurations'. Aquí podrá establecer las variables de entorno.
 
 Una vez hecho esto, debe dirigirse al navegador e ingresar la url http://localhost:4568/index, aquí econtrata dos formularios, uno para obtener los números primos en el rango del valor ingresado y el otro para obtener los factores del número ingresado:
 
@@ -72,19 +73,19 @@ Una vez que se establezca la conexión en las tres instancias se va instalar en 
 
 ![instanciaServiceProxy](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/maquina3ServiceProxy.png)
 
-![instanciaUnoMathService](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/maquina2MathService.png)
+![instanciaUnoMathService](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/maquina1MathService.png)
 
 ![instanciaDosMathService](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/maquina2MathService.png)
 
-Adicionalmente se deben configurar las variables de entorno, en la instancia ec2 de AWS donde vamos a ejecutar la clase ServiceProxy. Lo cual se puede hacer mediante el comando: export NOMBRE_DE_LA_VARIABLE=http://ipv4Correspondiente_a_las_instancias_que_en_la_que_se_ejecuta_MathService:puerto, esto se debe hacerse para cada variable que tenga:
+Adicionalmente, se deben configurar las variables de entorno en la instancia EC2 de AWS donde vamos a ejecutar la clase ServiceProxy. Esto se puede hacer mediante el comando: export NOMBRE_DE_LA_VARIABLE=http://ipv4Correspondiente_a_las_instancias_que_en_la_que_se_ejecuta_MathService:puerto. Esto se debe hacer para cada variable que tenga:
 
 ![instanciaDosMathService](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/configurarVariablesEnAws.png)
 
-Puede vertificar que las variables han sido configuradas mediante el comando env:
+Puede verificar que las variables han sido configuradas mediante el comando env:
 
 ![env](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/env.png)
 
-Se debe ubicar en la carpeta principal y ejecutar el comando mvn clean install y ejecutar las respectivas clases en las instancias. Una vez hecho esto, se puede dirigir al navegador con la ipv4 pública correspondiente a la instancia máquina3 e ingresar a la url que contiene el formulario, teniendo en cuenta que el pueto es el 4568:
+Se debe ubicar en la carpeta principal y ejecutar el comando mvn clean install, y ejecutar las respectivas clases en las instancias. Una vez hecho esto, se puede dirigir al navegador con la dirección IPv4 pública correspondiente a la instancia maquina3 e ingresar a la URL que contiene el formulario, teniendo en cuenta que el puerto es el 4568.
 
 ![form](https://github.com/lgar000/parcialDosArep/blob/main/Imagenes/formularioAws.png)
 
